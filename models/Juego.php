@@ -1,6 +1,7 @@
 <?php
 
 abstract class Juego {
+    protected $id;
     protected $nombre;
     protected $tipo;
     protected $plataforma;
@@ -10,7 +11,7 @@ abstract class Juego {
     protected $reseña;
 
 
-    public function __construct($nombre, $tipo, $plataforma, $genero, $puntuacion, $reseña) {
+    public function __construct($id, $nombre, $tipo, $plataforma, $genero, $puntuacion, $reseña) {
         $this->nombre = $nombre;
         $this->tipo = $tipo;
         $this->plataforma = $plataforma;
