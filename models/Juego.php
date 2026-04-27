@@ -11,12 +11,13 @@ abstract class Juego {
     protected $reseña;
 
 
-    public function __construct($id, $nombre, $tipo, $plataforma, $genero, $puntuacion, $reseña) {
+    public function __construct($id, $nombre, $tipo, $plataforma, $genero, $estado, $puntuacion, $reseña) {
         $this->nombre = $nombre;
         $this->tipo = $tipo;
         $this->plataforma = $plataforma;
         $this->genero = $genero;
-        $this->puntuacion = $reseña;
+        $this->estado = $estado;
+        $this->puntuacion = $puntuacion;
         $this->reseña = $reseña;
     }
 

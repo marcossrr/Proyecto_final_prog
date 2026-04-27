@@ -3,8 +3,8 @@
 class Digital extends Juego {
     private $peso;
 
-    public function __construct($nombre, $tipo, $plataforma, $genero, $puntuacion, $reseña, $peso, $id=0) {
-        parent::__construct($nombre, $tipo, $plataforma, $genero, $puntuacion, $reseña);
+    public function __construct($nombre, $tipo, $plataforma, $genero, $estado, $puntuacion, $reseña, $peso, $id=0) {
+        parent::__construct($nombre, $tipo, $plataforma, $genero, $estado, $puntuacion, $reseña, $id);
         $this->peso = $peso;
     }
 
