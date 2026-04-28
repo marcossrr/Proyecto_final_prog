@@ -1,8 +1,10 @@
 <?php
 
-class GestorPDO extends Connection {
+class GestorPDO {
+    private $conn;
+
     public function __construct(){
-        parent::__construct();
+        $this->conn = Connection::getInstance()->getConnection();
     }
 
     public function listar() {
