@@ -20,15 +20,16 @@ class JuegosController {
             $genero = $_POST['genero'];
             $estado = $_POST['estado'];
             $puntuacion = $_POST['puntuacion'];
-            $reseña = $_POST['reseña'];
+            $resenya = $_POST['resenya'];
 
             if ($_POST['tipo']=="Fisico"){
                 $soporte = $_POST['soporte']; 
-                $juego = new Fisico($nombre, $tipo, $plataforma, $genero, $estado, $puntuacion, $reseña, $soporte);
+                $juego = new Fisico($nombre, $tipo, $plataforma, $genero, $estado, $puntuacion, $resenya, $soporte);
             }else{
                 $peso = $_POST['peso'];
-                $juego = new Digital ($nombre, $tipo, $plataforma, $genero, $estado, $puntuacion, $reseña, $peso);
+                $juego = new Digital ($nombre, $tipo, $plataforma, $genero, $estado, $puntuacion, $resenya, $peso);
             }
+
             $this->gestor->agregar($juego);
 
             header("Location: index.php");
@@ -38,4 +39,35 @@ class JuegosController {
         include "views/crear.php";
     }
 
+    public function editar() {
+        $id = $_GET['id'] ?? null;
+        $vehiculo=($this->gestor->buscar($id));
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $juego->setTipo($_POST['tipo']);
+            $juego->setPlataforma($_POST['plataforma']);
+            $juego->setGenero($_POST['genero']);
+            $juego->setEstado($_POST['estado']);
+            $juego->setPuntuacion($_POST['puntuacion']);
+            $juego->setReseña($_POST['resenya']);
+
+            if ($juego instanceof Fisico) {
+                $juego->setSoporte($_POST['soporte']);
+            }else{
+                $juego->setPeso($_POST['peso']);
+            }
+            
+            $this->gestor->actualizar($juego);
+            header("Location: index.php");
+            exit;
+        }
+
+        include "views/editar.php";
+    }
+
+        public function eliminar() {
+        $id = $_GET['id'] ?? null;
+        $this->gestor->eliminar($id);
+        header("Location: index.php");
+        exit;
+    }
 }

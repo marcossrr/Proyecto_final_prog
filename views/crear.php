@@ -38,14 +38,12 @@
         Puntuacion:<br>
         <input type="number" name="puntuacion"><br><br>
         Reseña:<br>
-        <input type="text" name="reseña"><br><br>
+        <input type="text" name="resenya"><br><br>
         Soporte:<br>
         <input type="text" name="soporte"><br><br>
         Peso:<br>
         <input type="text" name="peso"><br><br>
 
-
-       
         <button type="submit">Guardar</button>
     </form>
 

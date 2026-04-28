@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Mi lista de juegos</title>
 </head>
 <body>
     <h1>Mis juegos </h1>
-<a href="index.php?accion=crear">Agregar Vehículo</a><p>
+
+    <div style="background-color: #f0f0f0; padding: 10px; margin-bottom: 20px;">
+        <?php if (isset($_SESSION['usuario_id'])): ?>
+            Bienvenido, <b><?= $_SESSION['usuarioEmail'] ?></b> | 
+            <a href="index.php?accion=logout">Cerrar Sesión</a>
+        <?php else: ?>
+            <a href="index.php?accion=login">Iniciar Sesión</a> | 
+            <a href="index.php?accion=alta">Registrarse</a>
+        <?php endif; ?>
+    </div>
+
+<a href="index.php?accion=crear">Agregar Juego</a><p>
     
     <table border="1" cellpadding="10">
         <tr>
@@ -19,10 +30,6 @@
             <th>Reseña</th>
             <th>Soporte</th>
             <th>Peso</th>
-            <?php if (isset($_SESSION['usuario_id'])): ?>
-                <th>Acciones</th>
-            <?php endif; ?>
-            
         </tr>
 
         <?php foreach ($juegos as $p): ?>
@@ -33,20 +40,18 @@
             <td><?= $p->getPlataforma() ?></td>
             <td><?= $p->getGenero() ?></td>
             <td><?= $p->getEstado() ?></td>
-            <td><?= $p->getPuntacion() ?></td>
+            <td><?= $p->getPuntuacion() ?></td>
             <td><?= $p->getReseña() ?></td>
             <td><?= ($p instanceof Fisico) ? $p->getSoporte() : "--"; ?></td>
             <td><?= ($p instanceof Digital) ? $p->getPeso() : "--"; ?></td>
-
-            
-                <?php if (isset($_SESSION['usuario_id'])): ?>
+                
+            <?php if (isset($_SESSION['usuario_id'])): ?>
                     <td>
                     <a href="index.php?accion=editar&id=<?= $p->getId() ?>">Editar</a>
                     
                     <a href="index.php?accion=eliminar&id=<?= $p->getId() ?>">Eliminar</a>
                     </td>
-                <?php endif; ?>    
-            
+                <?php endif; ?> 
         </tr>
         <?php endforeach; ?>
 
