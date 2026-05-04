@@ -9,7 +9,7 @@
     <form method="POST">
         Nombre:<br>
         <input type="text" name="nombre" required><br>
-       <br> Tipo:<br>
+        <br> Tipo:<br>
         <select name="tipo" required>
             <option value="Fisico">Fisico</option>
             <option value="Digital">Digital</option>

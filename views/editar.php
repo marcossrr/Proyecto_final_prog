@@ -14,7 +14,7 @@
             </select><br><br>
             
         Plataforma:<br>
-        <input type="text" name="plataforma" value="<?= $vehiculo->getPlataforma() ?>"  required><br><br>
+        <input type="text" name="plataforma" value="<?= $juego->getPlataforma() ?>"  required><br><br>
 
         Genero:<br>
             <select name="genero" value="<?= $juego->getGenero() ?>"  required><br><br>

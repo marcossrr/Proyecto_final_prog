@@ -4,7 +4,7 @@ class GestorPDO {
     private $conn;
 
     public function __construct(){
-        $this->conn = Connection::getInstance()->getConnection();
+        $this->conn = Connection::getInstance()->getConn();
     }
 
     public function listar() {
@@ -42,9 +42,8 @@ class GestorPDO {
     public function agregar($juego) {
         try{
             if ($juego instanceof Fisico){
-                $sql = "INSERT INTO juegos (id, nombre, tipo, plataforma, genero, estado, puntuacion, resenya, soporte) VALUES (:id, :nombre, :tipo, :plataforma, :genero, :estado, :puntuacion, :resenya, :soporte)";
+                $sql = "INSERT INTO juegos (nombre, tipo, plataforma, genero, estado, puntuacion, resenya, soporte) VALUES (:nombre, :tipo, :plataforma, :genero, :estado, :puntuacion, :resenya, :soporte)";
                 $stmt = $this->conn->prepare($sql);
-                $stmt->bindValue(':id', $juego->getId());
                 $stmt->bindValue(':nombre', $juego->getNombre());
                 $stmt->bindValue(':tipo', "Fisico");
                 $stmt->bindValue(':plataforma', $juego->getPlataforma());
@@ -66,6 +65,13 @@ class GestorPDO {
                 $stmt->bindValue(':peso', $juego->getPeso());
             }
             return $stmt->execute(); 
+
+            $stmt->execute();
+
+            $id = $this->conn->query("SELECT LAST_INSERT_ID()")->fetchColumn();
+            $juego->setId($id);
+
+        return $juego;
 
         } catch (PDOException $e) {
 
@@ -106,6 +112,14 @@ class GestorPDO {
         }
     }
 
+        public function eliminar($id) {
+        $sql="DELETE FROM juegos WHERE id=:id";
+        $stmt=$this->conn->prepare($sql);
+        $stmt->bindValue(':id',$id);
+        return $stmt->execute();
+    }
+
+
      public function registrarUsuario(Usuario $usuario) {
         try {
             $sql = "INSERT INTO Usuario (email, password) VALUES (:email, :password)";
@@ -117,7 +131,7 @@ class GestorPDO {
             return $stmt->execute(); 
             
         } catch (PDOException $e) {
-            echo $e->getMessage() . $e->getCode();
+            throw $e;
         }
     }
 

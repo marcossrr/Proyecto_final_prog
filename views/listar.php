@@ -48,9 +48,12 @@
             <?php if (isset($_SESSION['usuario_id'])): ?>
                     <td>
                     <a href="index.php?accion=editar&id=<?= $p->getId() ?>">Editar</a>
-                    
+                    </td>
+                    <td>
                     <a href="index.php?accion=eliminar&id=<?= $p->getId() ?>">Eliminar</a>
                     </td>
+
+                    
                 <?php endif; ?> 
         </tr>
         <?php endforeach; ?>
