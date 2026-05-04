@@ -36,7 +36,7 @@ abstract class Juego {
     public function setGenero($genero){ $this->genero = $genero; }
     public function setEstado($estado){ $this->estado = $estado; }
     public function setPuntuacion($puntuacion){ $this->puntuacion = $puntuacion; }
-    public function setResenya($resenya){ $this->resenya = $resenya; } 
+    public function setReseña($resenya){ $this->resenya = $resenya; } 
     public function setId($id){ $this->id = $id; }
 
 }

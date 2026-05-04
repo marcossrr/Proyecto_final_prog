@@ -93,7 +93,7 @@ class GestorPDO {
                 $stmt->bindValue(':resenya', $juego->getReseña());
                 $stmt->bindValue(':soporte', $juego->getSoporte());
         }else{  
-            $sql = "UPDATE juegos SET tipo=:tipo, plataforma=:plataforma, genero=:genero, estado=:estado, puntuacion=:puntuacion, resenya=:resenya, soporte=:soporte WHERE id=:id";
+            $sql = "UPDATE juegos SET tipo=:tipo, plataforma=:plataforma, genero=:genero, estado=:estado, puntuacion=:puntuacion, resenya=:resenya, peso=:peso WHERE id=:id";
              $stmt = $this->conn->prepare($sql);
                 $stmt->bindValue(':id', $juego->getId());
                 $stmt->bindValue(':tipo', "Digital");
